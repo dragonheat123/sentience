@@ -1,6 +1,7 @@
 // server.js
 // set up ======================================================================
 // get all the tools we need
+var sslRedirect = require('heroku-ssl-redirect');
 var express  = require('express');
 var path = require('path');
 var app      = express();
@@ -27,6 +28,7 @@ var session      = require('express-session');
 //require('./config/passport.js')(passport); // pass passport for configuration
 
 // set up our express application
+app.use(sslRedirect()); //enable https for heroku
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
