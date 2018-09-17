@@ -23,7 +23,7 @@ QCodeDecoder()
     if (err) document.getElementById("info").innerHTML= err;
     document.getElementById("info").innerHTML=result;
   }, true);
-},1000);}
+},500);}
 </script>
 
 </head>
@@ -37,7 +37,7 @@ QCodeDecoder()
 <div> 
     <video style="margin-left:auto;margin-right:auto;display:block" autoplay="true" id ="productinfo" width= "50%" capture="environment"></video>
 </div>
-<div id = "info"></div>
+<div id = "info" "margin-left:auto">Reading!...</div>
 
 <script>
 var video = document.querySelector("#productinfo");
@@ -53,9 +53,23 @@ if (navigator.mediaDevices.getUserMedia) {
   });
 }
 </script>
+<div> Click to set as: </div>
+<div class="row">
+<div class="col-xs-3"></div>
+<div class="col-xs-6">
+          <button style="float: left;" type="button" class="btn btn-primary" value="-2" onclick="clickButton(this)">Product&nbsp&nbsp&nbsp&nbsp&nbsp</button>   
 
-
-
+          <button style="float: right;" type="button" class="btn btn-danger" value="2" onclick="clickButton(this)">&nbsp&nbspCustomer</button> 
+</div>
+<div class="col-xs-3"></div>
+</div>
+<div class="row">
+<div class="col-xs-4"></div>
+<div class="col-xs-4">
+<button style="float: left;" type="button" class="btn" value="0" onclick="clickButton(this)">Clear Data&nbsp</button>
+<button style="float: right;" type="button" class="btn btn-success" value="0" onclick="clickButton(this)">&nbspSend Data</button>
+<div class="col-xs-4"></div>
+</div>
 </div>
 </body>
 </html>
