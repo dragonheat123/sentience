@@ -3,7 +3,11 @@
 // get all the tools we need
 var express  = require('express');
 var path = require('path');
-var app      = express();
+var express = require('express');
+var http = require('http');
+var enforce = require('express-sslify');
+var app = express();
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -47,6 +51,8 @@ app.use('/bower', express.static(path.join(__dirname, 'bower_components')))
 require('./models/routes.js')(app); // load our routes and pass in our app 
 
 // launch ======================================================================
-app.listen(port);
-console.log('The magic happens on port ' + port);	
-
+//app.listen(port);
+//console.log('The magic happens on port ' + port);	
+http.createServer(app).listen(app.get('port'), function() {
+    console.log('Express server listening on port ' + app.get('port'));
+});
