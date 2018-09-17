@@ -3,11 +3,7 @@
 // get all the tools we need
 var express  = require('express');
 var path = require('path');
-var express = require('express');
-var http = require('http');
-var enforce = require('express-sslify');
-var app = express();
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+var app      = express();
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -39,8 +35,8 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
 app.use(session({ secret: 'hellowhoisthis' })); // session secret
-//app.use(passport.initialize());
-//app.use(passport.session()); // persistent login sessions
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 ///middleware for images/js scripts
@@ -51,8 +47,6 @@ app.use('/bower', express.static(path.join(__dirname, 'bower_components')))
 require('./models/routes.js')(app); // load our routes and pass in our app 
 
 // launch ======================================================================
-//app.listen(port);
-//console.log('The magic happens on port ' + port);	
-http.createServer(app).listen(app.get('port'), function() {
-    console.log('Express server listening on port ' + app.get('port'));
-});
+app.listen(port);
+console.log('The magic happens on port ' + port);	
+
