@@ -3,7 +3,7 @@
 <html>
 <head>
 
-<title>Customer Feedback</title>
+<title>Customer Sentiment Analyzer</title>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 
@@ -29,7 +29,7 @@
 var video = document.querySelector("#productinfo");
  
 if (navigator.mediaDevices.getUserMedia) {       
-    navigator.mediaDevices.getUserMedia({video: true, advanced: [{facingMode: "environment"}]
+    navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}
     })
   .then(function(stream) {
     video.srcObject = stream;
