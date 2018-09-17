@@ -12,9 +12,22 @@
 </style>
 
 <script src="../bower/qcode-decoder/build/qcode-decoder.min.js"></script>
+<script>
+function read() {
+setInterval(
+function(){
+var video1 = document.querySelector("#productinfo");
+var qr = new QCodeDecoder();
+QCodeDecoder()
+  .decodeFromVideo(video1, function (err, result) {
+    if (err) document.getElementById("info").innerHTML= err;
+    document.getElementById("info").innerHTML=result;
+  }, true);
+},1000);}
+</script>
 
 </head>
-<body>
+<body onload="read()">
 <div class="container">
 
 <div class="page-header text-center">
@@ -24,6 +37,7 @@
 <div> 
     <video style="margin-left:auto;margin-right:auto;display:block" autoplay="true" id ="productinfo" width= "50%" capture="environment"></video>
 </div>
+<div id = "info"></div>
 
 <script>
 var video = document.querySelector("#productinfo");
@@ -38,15 +52,9 @@ if (navigator.mediaDevices.getUserMedia) {
     console.log("Something went wrong!");
   });
 }
-var qr = new QCodeDecoder();
-
-QCodeDecoder()
-  .decodeFromVideo(video, function (err, result) {
-    if (err) throw err;
-    alert(result);
-  }, true);
-
 </script>
+
+
 
 </div>
 </body>
