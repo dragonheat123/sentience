@@ -39,8 +39,9 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 //app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-///middleware for images
+///middleware for images/js scripts
 app.use('/static', express.static(path.join(__dirname, 'assets')))
+app.use('/bower', express.static(path.join(__dirname, 'bower_components')))
 
 // routes ======================================================================
 require('./models/routes.js')(app); // load our routes and pass in our app 

@@ -2,24 +2,50 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
+
+<title>Customer Feedback</title>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+<style>
+    body        { padding-top:80px; }
+</style>
+
+<script src="../bower/qcode-decoder/build/qcode-decoder.min.js"></script>
+
 </head>
 <body>
 <div class="container">
 
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+<div class="page-header text-center">
+    <h1><span><img src='../static/3M.png' alt="3M logo"  width="5.5%"></span>&nbsp Sentience </h1>
+</div>
 
-        <p>Login or Register with:</p>
+<div> 
+    <video style="margin-left:auto;margin-right:auto;display:block" autoplay="true" id ="productinfo" width= "50%"></video>
+</div>
 
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-    </div>
+<script>
+var video = document.querySelector("#productinfo");
+ 
+if (navigator.mediaDevices.getUserMedia) {       
+    navigator.mediaDevices.getUserMedia({video: true})
+  .then(function(stream) {
+    video.srcObject = stream;
+  })
+  .catch(function(err0r) {
+    console.log("Something went wrong!");
+  });
+}
+var qr = new QCodeDecoder();
+
+QCodeDecoder()
+  .decodeFromVideo(video, function (err, result) {
+    if (err) throw err;
+    alert(result);
+  }, true);
+
+</script>
 
 </div>
 </body>
