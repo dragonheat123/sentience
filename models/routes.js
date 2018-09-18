@@ -7,11 +7,16 @@ module.exports = function(app) {
         res.render('index.ejs', {smessage: "hello!"}); // load the index.ejs file
     });
 
+    app.get('/index', function(req, res) {
+        res.render('index.ejs', {smessage: "hello!"}); // load the index.ejs file
+    });
+
     app.post('/index', async (req, res) => {
-        var myData = new require('./userp.js')(req.body);
-        let google = require('googleapis');
+        console.log(req.body.product);
+        var info = req.body;
+        var { google } = require("googleapis");
         let authentication = require("./authentication");
-         
+        console.log((process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE) + '/.credentials/'); 
         function appendData(auth) {
           var sheets = google.sheets('v4');
           sheets.spreadsheets.values.append({
@@ -31,12 +36,13 @@ module.exports = function(app) {
             }
           });
         }
+
         authentication.authenticate().then((auth)=>{
             appendData(auth);
         });  
 
         res.render('index.ejs', {
-            smessage: req.body,
+            smessage: JSON.stringify(req.body)
        });    
     });
 
