@@ -49,17 +49,9 @@ QCodeDecoder()
 <script>
 var video = document.querySelector("#productinfo");
 
-const videoConstraints = {
-facingMode: 'environment'
-};
-const constraints = {
-video: videoConstraints,
-audio: false
-};
-
 if (navigator.mediaDevices.getUserMedia) {       
     navigator.mediaDevices
-    .getUserMedia(constraints)
+    .getUserMedia({video: {facingMode: "environment"},audio:false})
     .then(stream => {
       video.srcObject = stream;
     })
