@@ -16,7 +16,7 @@
 function read() {
 setInterval(
 function(){
-var video1 = document.querySelector("#productinfo");
+var video1 = document.querySelector("#video");
 var qr = new QCodeDecoder();
 QCodeDecoder()
   .decodeFromVideo(video1, function (err, result) {
@@ -35,7 +35,7 @@ QCodeDecoder()
 </div>
 
 <div> 
-    <video style="margin-left:auto;margin-right:auto;display:block" autoplay="true" id ="productinfo" width= "50%" capture="environment"></video>
+    <video style="margin-left:auto;margin-right:auto;display:block" autoplay="true" id ="video" width= "50%" capture="environment"></video>
 </div>
 
 <div class="row">
@@ -46,23 +46,9 @@ QCodeDecoder()
 <div class="col-xs-3"></div>
 </div>
 
-<script>
-var video = document.querySelector("#productinfo");
-
-if (navigator.mediaDevices.getUserMedia) {       
-    navigator.mediaDevices
-    .getUserMedia({video: {facingMode: "environment"},audio:false})
-    .then(stream => {
-      video.srcObject = stream;
-    })
-    .catch(error => {
-      document.getElementById("info").innerHTML = error;
-    });
-}
-
-
-</script>
-
+<button id="showVideo">Open camera</button>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="../static/webrtcvideo.js"></script>
 
 
 <div> Click to tag as: </div>
