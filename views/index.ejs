@@ -23,7 +23,7 @@ QCodeDecoder()
   }, true);
 }
 function clearinfo() {
-document.getElementById("info").innerHTML="Click to read another code..";
+    document.getElementById("info").innerHTML="Click to read another code..";
 }
 </script>
 
@@ -36,19 +36,19 @@ document.getElementById("info").innerHTML="Click to read another code..";
 </div>
 
 <div class="row">
-<div onclick="clearinfo()" class="col-md-3"></div>
+<div class="col-md-3"></div>
 <div class="col-md-6">
-    <video onclick="read()" style="margin-left:auto;margin-right:auto;display:block" autoplay playsinline id ="video" width= "100%" capture="environment"></video>
+    <video onclick="read()" style="margin-left:auto;margin-right:auto;display:block" autoplay playsinline id ="video" width= "80%" capture="environment"></video>
     <div id = 'errorMsg'></div>
 </div>
-<div onclick-"clearinfo()" class="col-md-3"></div>
+<div class="col-md-3"></div>
 </div>
 
 
 <div class="row">
 <div class="col-xs-3"></div>
 <div class="col-xs-6">
-    <div id="info" "margin-left:auto">Click on QR code to read...</div>
+    <div onlick="clearinfo()" id="info" "margin-left:auto">Click on QR code to read...</div>
     <div style="margin-top: 15px;margin-bottom: 15px;"> Click to tag as: </div>
 </div>
 <div class="col-xs-3"></div>
