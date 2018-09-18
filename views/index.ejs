@@ -50,10 +50,14 @@ QCodeDecoder()
 var video = document.querySelector("#productinfo");
  
 if (navigator.mediaDevices.getUserMedia) {       
-    navigator.mediaDevices.getUserMedia({video:true
+    navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}
     })
   .then(function(stream) {
-    video.srcObject = stream;
+     if (window.webkitURL) {
+        video.src = window.webkitURL.createObjectURL(stream);
+    } else {
+        video.srcObject = stream;
+    };video.play();
   })
   .catch(function(err0r) {
     console.log("Something went wrong!");
