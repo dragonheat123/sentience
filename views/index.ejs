@@ -56,7 +56,7 @@ if (navigator.mediaDevices.getUserMedia) {
       video.srcObject = stream;
     })
     .catch(error => {
-      console.error(error);
+      document.getElementById("info").innerHTML = error;
     });
 }
 
