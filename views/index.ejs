@@ -14,8 +14,6 @@
 <script src="../bower/qcode-decoder/build/qcode-decoder.min.js"></script>
 <script>
 function read() {
-setInterval(
-function(){
 var video1 = document.querySelector("#video");
 var qr = new QCodeDecoder();
 QCodeDecoder()
@@ -23,11 +21,14 @@ QCodeDecoder()
     if (err) document.getElementById("info").innerHTML= err;
     document.getElementById("info").innerHTML=result;
   }, true);
-},2000);}
+}
+function clear() {
+document.getElementById("info").innerHTML="Click on read another code..";
+}
 </script>
 
 </head>
-<body onload="read();init()">
+<body onload="init()">
 <div class="container">
 
 <div class="page-header text-center">
@@ -35,19 +36,19 @@ QCodeDecoder()
 </div>
 
 <div class="row">
-
-<div class="col-md-12">
-    <video style="margin-left:auto;margin-right:auto;display:block" autoplay playsinline id ="video" width= "50%" capture="environment"></video>
+<div onclick="clear();" class="col-md-3"></div>
+<div class="col-md-6">
+    <video onclick="read()" style="margin-left:auto;margin-right:auto;display:block" autoplay playsinline id ="video" width= "100%" capture="environment"></video>
     <div id = 'errorMsg'></div>
 </div>
-
+<div onclick-"clear();" class="col-md-3"></div>
 </div>
 
 
 <div class="row">
 <div class="col-xs-3"></div>
 <div class="col-xs-6">
-    <div id="info" "margin-left:auto">Reading!...</div>
+    <div id="info" "margin-left:auto">Click on QR code to read...</div>
     <div style="margin-top: 15px;margin-bottom: 15px;"> Click to tag as: </div>
 </div>
 <div class="col-xs-3"></div>
