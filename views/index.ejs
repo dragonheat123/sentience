@@ -34,13 +34,13 @@ function clearinfo() {
     custinfo = [];
 }
 function tagproduct(){
-    document.getElementById("products").innerHTML = JSON.parse(document.getElementById("pinfo").innerHTML).Product_Name;
+    var inf = JSON.parse(document.getElementById("info").innerHTML)
+    document.getElementById("products").innerHTML = inf.Product_Name;
     products = [document.getElementById("pinfo").innerHTML];
     document.getElementById("sendproduct").value = products;
 }
 function tagcust(){
-    var inf = JSON.parse(document.getElementById("pinfo").innerHTML)
-    var infc = JSON.parse(document.getElementById("cinfo").innerHTML)
+    var infc = JSON.parse(document.getElementById("info").innerHTML)
     custinfo.push(JSON.parse(document.getElementById("cinfo").innerHTML).First_Name+"_"+JSON.parse(document.getElementById("cinfo").innerHTML).Last_Name);
     document.getElementById("cust").innerHTML=custinfo;
     cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.DH_Email_Add,inf.DH_Mobile_No,inf.Sales_Person,inf.SP_Email_Add,inf.SP_Mobile_No,
@@ -54,7 +54,7 @@ function tagcust(){
 <div class="container">
 
 <div class="page-header text-center">
-    <h1><span><img src='../static/3M.png' alt="3M logo"  width="5.5%"></span>&nbsp Sentience </h1>
+    <h1><span><img src='../static/3M.png' alt="3M logo"  width="5.5%"></span>&nbsp P2C Assistant </h1>
 </div>
 
 <div class="row">
