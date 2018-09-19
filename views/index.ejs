@@ -16,6 +16,8 @@
 var products = [];
 var cust = [];
 var custinfo = [];
+var inf;
+var infc;
 function read() {
 var video1 = document.querySelector("#video");
 var qr = new QCodeDecoder();
@@ -32,6 +34,8 @@ function clearinfo() {
     products = [];
     cust = [];
     custinfo = [];
+    inf = [];
+    infc = [];
 }
 function tagproduct(){
     var inf = JSON.parse(document.getElementById("info").innerHTML)
@@ -40,8 +44,9 @@ function tagproduct(){
     document.getElementById("sendproduct").value = products;
 }
 function tagcust(){
+    
     var infc = JSON.parse(document.getElementById("info").innerHTML)
-    custinfo.push(JSON.parse(document.getElementById("cinfo").innerHTML).First_Name+"_"+JSON.parse(document.getElementById("cinfo").innerHTML).Last_Name);
+    custinfo.push(infc.First_Name+"_"+infc.Last_Name);
     document.getElementById("cust").innerHTML=custinfo;
     cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.DH_Email_Add,inf.DH_Mobile_No,inf.Sales_Person,inf.SP_Email_Add,inf.SP_Mobile_No,
     infc.First_Name,infc.Last_Name,infc.Job_Title,infc.Company_Name,infc.Company_Add,infc.Email_Add,infc.Office_No,infc.Mobile_No,'#');
