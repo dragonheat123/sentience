@@ -13,7 +13,7 @@ module.exports = function(app) {
 
     app.post('/index', async (req, res) => {
         console.log(req.body.customers.split(',#,').length);
-        var data_array = new Array(req.body.customers.split(',#,').length+1).fill(null).map(()=>new Array(17).fill(null));
+        var data_array = new Array(req.body.customers.split(',#,').length).fill(null).map(()=>new Array(17).fill(null));
         for (i=0;i<req.body.customers.split(',#,').length;i++){
             data_array[i]=req.body.customers.split(',#,')[i].split(',')
         };
@@ -22,7 +22,7 @@ module.exports = function(app) {
         let popped = arry.pop();
 
         data_array[req.body.customers.split(',#,').length-1] = arry;
-        data_array[req.body.customers.split(',#,').length][0] = Date.now().toString();
+        //data_array[req.body.customers.split(',#,').length][0] = Date.now().toString();
 
         console.log(data_array);
 
