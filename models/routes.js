@@ -24,7 +24,7 @@ module.exports = function(app) {
         data_array[req.body.customers.split(',#,').length-1] = arry;
         data_array[req.body.customers.split(',#,').length] = [Date.now().toString()];
 
-        console.log(data_array)
+        console.log(data_array);
 
         require('dotenv').config();
         var { google } = require('googleapis');
