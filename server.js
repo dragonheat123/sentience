@@ -1,6 +1,7 @@
 // server.js
 // set up ======================================================================
 // get all the tools we need
+require('dotenv').config()
 var sslRedirect = require('heroku-ssl-redirect');
 var express  = require('express');
 var path = require('path');
