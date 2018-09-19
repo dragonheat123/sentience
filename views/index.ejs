@@ -38,14 +38,14 @@ function clearinfo() {
     infc = [];
 }
 function tagproduct(){
-    var inf = JSON.parse(document.getElementById("info").innerHTML)
+    var inf = JSON.parse(document.getElementById("pinfo").innerHTML)
     document.getElementById("products").innerHTML = inf.Product_Name;
     products = [document.getElementById("pinfo").innerHTML];
     document.getElementById("sendproduct").value = products;
 }
 function tagcust(){
     
-    var infc = JSON.parse(document.getElementById("info").innerHTML)
+    var infc = JSON.parse(document.getElementById("cinfo").innerHTML)
     custinfo.push(infc.First_Name+"_"+infc.Last_Name);
     document.getElementById("cust").innerHTML=custinfo;
     cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.DH_Email_Add,inf.DH_Mobile_No,inf.Sales_Person,inf.SP_Email_Add,inf.SP_Mobile_No,
