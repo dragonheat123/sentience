@@ -15,6 +15,7 @@
 <script>
 var products = [];
 var cust = [];
+var custinfo = [];
 function read() {
 var video1 = document.querySelector("#video");
 var qr = new QCodeDecoder();
@@ -28,15 +29,23 @@ function clearinfo() {
     document.getElementById("info").innerHTML="Click to read another code..";
     document.getElementById("products").innerHTML="";
     document.getElementById("cust").innerHTML="";
-    products = []
-    cust = []
+    products = [];
+    cust = [];
+    custinfo = [];
 }
 function tagproduct(){
-    document.getElementById("products").innerHTML=document.getElementById("info").innerHTML;
+    document.getElementById("products").innerHTML = JSON.parse(document.getElementById("pinfo").innerHTML).Product_Name;
+    products = [document.getElementById("pinfo").innerHTML];
+    document.getElementById("sendproduct").value = products;
 }
 function tagcust(){
-    cust.push(document.getElementById("info").innerHTML)
-    document.getElementById("cust").innerHTML=cust;
+    var inf = JSON.parse(document.getElementById("pinfo").innerHTML)
+    var infc = JSON.parse(document.getElementById("cinfo").innerHTML)
+    custinfo.push(JSON.parse(document.getElementById("cinfo").innerHTML).First_Name+"_"+JSON.parse(document.getElementById("cinfo").innerHTML).Last_Name);
+    document.getElementById("cust").innerHTML=custinfo;
+    cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.DH_Email_Add,inf.DH_Mobile_No,inf.Sales_Person,inf.SP_Email_Add,inf.SP_Mobile_No,
+    infc.First_Name,infc.Last_Name,infc.Job_Title,infc.Company_Name,infc.Company_Add,infc.Email_Add,infc.Office_No,infc.Mobile_No,'#');
+    document.getElementById("sendcustomers").value = cust
 }
 </script>
 
@@ -79,8 +88,8 @@ function tagcust(){
 
 
 <form action="/index" method="post">
-<input type="hidden" name="product" value = "fdfd">
-<input type="hidden" name="customers" value= <%= Date.now() %>>
+<input type="hidden" id="sendproduct" name="product" value ="fdfd">
+<input type="hidden" id="sendcustomers" name="customers" value= <%= Date.now() %>>
 
 <div class="row">
 <div class="col-xs-3"></div>
@@ -116,8 +125,8 @@ function tagcust(){
 </div>
 
 <div class="row">
-<div class="col-md-6"><div style="float:left;">{ Product_Name:"Channel Lighting System", Country:"Singapore", Division:"Electrical Markets Division", Division_Head:"Andrew Ong", DH_Email_Add:"andrew.ong@mmm.com", DH_Mobile_No:"97639857", Sales_Person:"Johnathan Tay", SP_Email_Add:"jktay@mmm.com", SP_Mobile_No:"98420267" }</div></div>
-<div class="col-md-6"><div style="float:right;">{ First_Name:"Clement", Last_Name:"Lork", Job_Title:"IPP Student", Company_Name:"Singapore University of Technology and Design", Company_Add:"8 Somapah Road Singapore 487372", Email_Add:"clement_lork@mymail.sutd.edu.sg", Office_No:"", Mobile_No:"91294371" }</div></div>
+<div class="col-md-6"><div id="pinfo" style="float:left;">{ "Product_Name":"Channel Lighting System", "Country":"Singapore", "Division":"Electrical Markets Division", "Division_Head":"Andrew Ong", "DH_Email_Add":"andrew.ong@mmm.com", "DH_Mobile_No":"97639857", "Sales_Person":"Johnathan Tay", "SP_Email_Add":"jktay@mmm.com", "SP_Mobile_No":"98420267" }</div></div>
+<div class="col-md-6"><div id="cinfo" style="float:right;">{ "First_Name":"Clement", "Last_Name":"Lork", "Job_Title":"IPP Student", "Company_Name":"Singapore University of Technology and Design", "Company_Add":"8 Somapah Road Singapore 487372", "Email_Add":"clement_lork@mymail.sutd.edu.sg", "Office_No":"", "Mobile_No":"91294371" }</div></div>
 </div>
 
 </div>

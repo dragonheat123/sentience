@@ -12,8 +12,18 @@ module.exports = function(app) {
     });
 
     app.post('/index', async (req, res) => {
-        console.log(req.body.product);
-        var info = req.body;
+        console.log(req.body.customers.split(',#,').length);
+        var data_array = new Array(req.body.customers.split(',#,').length).fill(null).map(()=>new Array(17).fill(null));
+        for (i=0;i<req.body.customers.split(',#,').length;i++){
+            data_array[i]=req.body.customers.split(',#,')[i].split(',')
+        };
+
+        let  arry =  data_array[req.body.customers.split(',#,').length-1]
+        let popped = arry.pop();
+
+        data_array[req.body.customers.split(',#,').length-1] = arry
+
+        console.log(data_array)
         var { google } = require("googleapis");
         let authentication = require("./authentication");
         console.log((process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE) + '/.credentials/'); 
@@ -25,7 +35,7 @@ module.exports = function(app) {
             range: 'Sheet1!A2:B', //Change Sheet1 if your worksheet's name is something else
             valueInputOption: "USER_ENTERED",
             resource: {
-              values: [ ["Void", "Canvas", "Website"], ["Paul", "Shan", "Human"] ]
+              values: data_array
             }
           }, (err, response) => {
             if (err) {
