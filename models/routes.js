@@ -22,7 +22,7 @@ module.exports = function(app) {
         let popped = arry.pop();
 
         data_array[req.body.customers.split(',#,').length-1] = arry;
-        data_array[req.body.customers.split(',#,').length] = [Date.now().toString()];
+        data_array[req.body.customers.split(',#,').length][0] = Date.now().toString();
 
         console.log(data_array);
 
