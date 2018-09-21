@@ -45,8 +45,8 @@ function tagcust(){
     infc = JSON.parse(document.getElementById("info").innerHTML)
     custinfo.push(infc.First_Name+"_"+infc.Last_Name);
     document.getElementById("cust").innerHTML=custinfo;
-    cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.DH_Email,inf.DH_Handphone,inf.Sales_Manager,inf.SP_Email,inf.SP_Handphone,
-    infc.First_Name,infc.Last_Name,infc.Job_Title,infc.Company,infc.Company_Add,infc.Email,infc.Office_No,infc.Handphone,Date.now().toString(),'#');
+    cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.DH_Email_Add,inf.DH_Mobile_No,inf.Sales_Person,inf.SP_Email_Add,inf.SP_Mobile_No,
+    infc.First_Name,infc.Last_Name,infc.Job_Title,infc.Company_Name,infc.Company_Add,infc.Email_Add,infc.Office_No,infc.Mobile_No,Date.now().toString(),'#');
     document.getElementById("sendcustomers").value = cust
 }
 </script>
@@ -132,8 +132,7 @@ function tagcust(){
 </div>
 
 
-
-
+<p>
   <button class="btn btn-lg btn-default" onclick="readWriteNfc()">Test NFC Read/Write</button>
 </p>
 
