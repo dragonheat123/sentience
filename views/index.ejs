@@ -146,13 +146,13 @@ function tagcust(){
     function readWriteNfc() {
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
-        consoleLog("NFC message received from URL " + message.url);
+        consoleLog("Start read");
         if (message.data[0].recordType === 'empty') {
           navigator.nfc.push([{
             url: message.url,
             data: [{
               recordType: "text",
-              data: 'Hello World'
+              data: '{ "Product_Name":"Channel Lighting System", "Country":"Singapore", "Division":"Electrical Markets Division", "Division_Head":"Andrew Ong", "DH_Email_Add":"andrew.ong@mmm.com", "DH_Mobile_No":"97639857", "Sales_Person":"Johnathan Tay", "SP_Email_Add":"jktay@mmm.com", "SP_Mobile_No":"98420267" }'
             }]
           }]);
         }
