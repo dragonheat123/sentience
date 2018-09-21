@@ -145,16 +145,9 @@ function tagcust(){
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
         consoleLog("Start read");
-        if (message.data[0].recordType === 'empty') {
-          navigator.nfc.push([{
-            url: message.url,
-            data: [{
-              recordType: "text",
-              data: '{ "Product_Name":"Channel Lighting System", "Country":"Singapore", "Division":"Electrical Markets Division", "Division_Head":"Andrew Ong", "DH_Email_Add":"andrew.ong@mmm.com", "DH_Mobile_No":"97639857", "Sales_Person":"Johnathan Tay", "SP_Email_Add":"jktay@mmm.com", "SP_Mobile_No":"98420267" }'
-            }]
-          }]);
-        }
+
         processMessage(message);
+        consoleLog("Stafdfdead")
       }, {mode: 'any'})
       .then(() => consoleLog("Added a watch."))
       .catch(err => consoleLog("Adding watch failed: " + err.name));
