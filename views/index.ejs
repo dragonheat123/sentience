@@ -144,7 +144,7 @@ function tagcust(){
     function readWriteNfc() {
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
-        consoleLog(message);
+        consoleLog(JSON.stringify(message));
         consoleLog("Start read");
         if (message.data[0].recordType === 'empty') {
           navigator.nfc.push([{
