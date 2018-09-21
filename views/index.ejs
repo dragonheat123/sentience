@@ -38,13 +38,11 @@ function clearinfo() {
     infc = [];
 }
 function tagproduct(){
-    inf = JSON.parse(document.getElementById("pinfo").innerHTML)
+    inf = JSON.parse(document.getElementById("info").innerHTML)
     document.getElementById("products").innerHTML = inf.Product_Name;
-    products = [document.getElementById("pinfo").innerHTML];
-    document.getElementById("sendproduct").value = products;
 }
 function tagcust(){
-    infc = JSON.parse(document.getElementById("cinfo").innerHTML)
+    infc = JSON.parse(document.getElementById("info").innerHTML)
     custinfo.push(infc.First_Name+"_"+infc.Last_Name);
     document.getElementById("cust").innerHTML=custinfo;
     cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.DH_Email_Add,inf.DH_Mobile_No,inf.Sales_Person,inf.SP_Email_Add,inf.SP_Mobile_No,
