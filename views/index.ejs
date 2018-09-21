@@ -137,6 +137,7 @@ function tagcust(){
 </p>
 
 <pre id="log"></pre>
+<div id="nfcinfo"></div>
 
 <p><small>Based on the code snippets from <a href="https://w3c.github.io/web-nfc/#examples">specification draft</a>.</small></p>
 
@@ -145,7 +146,8 @@ function tagcust(){
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
         var messagedata = message["records"][0]["data"]
-        consoleLog(JSON.parse(messagedata).Product_name);
+        document.getElementById('nfcinfo').innerHTML = messagedata
+        consoleLog(messagedata);
         consoleLog("Start read");
         if (message.data[0].recordType === 'empty') {
           navigator.nfc.push([{
