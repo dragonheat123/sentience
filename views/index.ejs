@@ -91,9 +91,9 @@ function clearinfo() {
 <video onclick="read()" style="margin-left:auto;margin-right:auto;display:block;width:60%;" autoplay playsinline id ="video" capture="environment"></video>
 <span id="info" style="margin-left:15%"></span>
 <p align='center'><b>Product</b></p>
-<div style="margin-left:15%;margin-right:15%" id="products"></div>
+<div style="margin-left:15%;margin-right:15%;overflow-wrap: break-word;" id="products"></div>
 <p align='center'><b>Customers</b></p>
-<div style="margin-left:15%;margin-right:15%" id="cust"></div>
+<div style="margin-left:15%;margin-right:15%;overflow-wrap: break-word;" id="cust"></div>
 </div>
 
 
@@ -116,18 +116,10 @@ function clearinfo() {
 <input type="hidden" id="sendcustomers" name="customers" value= <%= Date.now() %>>
 
 <div class="row">
-<div class="col-xs-3"></div>
-<div class="col-xs-6" style="height: 15px;></div>
-<div class="col-xs-3"></div>
+<div>
+    <button style="float: left;margin-left:15%" type="button" class="btn" value="0" onclick="clearinfo()">Clear Data&nbsp</button>
+    <button id ="submit" type="submit" style="float: right;margin-right:15%" type="button" class="btn btn-success">&nbspSend Data</button>
 </div>
-
-<div class="row">
-<div class="col-xs-4"></div>
-<div class="col-xs-4">
-    <button style="float: left;" type="button" class="btn" value="0" onclick="clearinfo()">Clear Data&nbsp</button>
-    <button id ="submit" type="submit" style="float: right;" type="button" class="btn btn-success">&nbspSend Data</button>
-</div>
-<div class="col-xs-4"></div>
 </div>
 
 
