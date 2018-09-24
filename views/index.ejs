@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 
 <style>
-    body        { padding-top:80px; }
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 </style>
 
 <script src="../bower/qcode-decoder/build/qcode-decoder.min.js"></script>
@@ -78,7 +80,7 @@ function clearinfo() {
 
 </head>
 <body onload="init();readNfc();">
-<div id="con" style="margin-top:-20%">   
+<div id="con" style="margin-top:5%">   
 <div class="page-header text-center">
     <h1><span><img src='../static/3M.png' alt="3M logo"  width="5.5%"></span>&nbsp P2C Assistant </h1>
     <span id = "nfcinfo"></span>
