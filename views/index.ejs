@@ -56,8 +56,8 @@ QCodeDecoder()
         infc = JSON.parse(result)
         custinfo.push(infc.First_Name+"_"+infc.Last_Name);
         document.getElementById("cust").innerHTML=custinfo;
-        cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.DH_Email_Add,inf.DH_Mobile_No,inf.Sales_Person,inf.SP_Email_Add,inf.SP_Mobile_No,
-        infc.First_Name,infc.Last_Name,infc.Job_Title,infc.Company_Name,infc.Company_Add,infc.Email_Add,infc.Office_No,infc.Mobile_No,Date.now().toString(),'#');
+        cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.Div_Email,inf.Div_Mobile,inf.Sales_Manager,inf.Sales_Email,inf.Sales_Mobile,
+        infc.First_Name,infc.Last_Name,infc.Job_Title,infc.Company,infc.Company_Add,infc.Email,infc.Office,infc.Mobile,Date.now().toString(),'#');
         document.getElementById("sendcustomers").value = cust
     };
   }, true);
