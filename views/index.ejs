@@ -25,7 +25,7 @@ function readNfc() {
     navigator.nfc.watch(function (message) {
         var messagedata = message["records"][0]["data"]
         document.getElementById('nfcinfo').innerHTML = messagedata
-        alert("Read NFC!")
+        alert("Read NFC - Product!")
         inf = JSON.parse(messagedata);
         document.getElementById("products").innerHTML = inf.Product_Name;
       }, {mode: 'any'})
@@ -41,12 +41,13 @@ QCodeDecoder()
   .decodeFromVideo(video1, function (err, result) {
     if (err) document.getElementById("info").innerHTML= err;
     document.getElementById("info").innerHTML=result;
-    alert("scanned!");
-    if (JSON.parse(result).Product_Name !== undefined || JSON.parse(result).Product_Name !== null){
+    if (JSON.parse(result).Product_Name !== undefined ){
+        alert("Scanned QR - Product!");
         inf = JSON.parse(result);
         document.getElementById("products").innerHTML = inf.Product_Name;
     };
-    if (JSON.parse(result).First_Name !== undefined || JSON.parse(result).First_name !== undefined){
+    if (JSON.parse(result).First_Name !== undefined ){
+        alert("Scanned QR - Customer!");
         infc = JSON.parse(result)
         custinfo.push(infc.First_Name+"_"+infc.Last_Name);
         document.getElementById("cust").innerHTML=custinfo;
@@ -137,20 +138,6 @@ function clearinfo() {
 
 
 </form>
-
-<div class="row">
-<div class="col-xs-3"></div>
-<div class="col-xs-6" style="height: 15px;></div>
-<div class="col-xs-3"></div>
-</div>
-
-<div class="row">
-<div class="col-md-6"><div id="pinfo" style="float:left;">{ "Product_Name":"Channel Lighting System", "Country":"Singapore", "Division":"Electrical Markets Division", "Division_Head":"Andrew Ong", "DH_Email_Add":"andrew.ong@mmm.com", "DH_Mobile_No":"97639857", "Sales_Person":"Johnathan Tay", "SP_Email_Add":"jktay@mmm.com", "SP_Mobile_No":"98420267" }</div></div>
-<div class="col-md-6"><div id="cinfo" style="float:right;">{ "First_Name":"Clement", "Last_Name":"Lork", "Job_Title":"IPP Student", "Company_Name":"Singapore University of Technology and Design", "Company_Add":"8 Somapah Road Singapore 487372", "Email_Add":"clement_lork@mymail.sutd.edu.sg", "Office_No":"", "Mobile_No":"91294371" }</div></div>
-</div>
-
-<pre id="log"></pre>
-<div id="nfcinfo"></div>
 
 </div>
 </body>
