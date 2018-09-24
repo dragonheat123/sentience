@@ -46,8 +46,26 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/static', express.static(path.join(__dirname, 'assets')))
 app.use('/bower', express.static(path.join(__dirname, 'bower_components')))
 
+///salesforce connection
+var sf = require('node-salesforce');
+var sfconn = new sf.Connection({
+  // you can change loginUrl to connect to sandbox or prerelease env.
+  // loginUrl : 'https://test.salesforce.com'
+});
+var username = process.env.SALESFORCE_USERNAME
+var password = process.env.SALESFORCE_PASS
+sfconn.login(username, password, function(err, userInfo) {
+	if (err) { return console.error(err); }
+	// Now you can get the access token and instance URL information.
+	// Save them to establish connection next time.
+	console.log(sfconn.accessToken);
+	console.log(sfconn.instanceUrl);
+	// logged in user property
+	console.log("User ID: " + userInfo.id);
+	console.log("Org ID: " + userInfo.organizationId);
+});
 // routes ======================================================================
-require('./models/routes.js')(app); // load our routes and pass in our app 
+require('./models/routes.js')(app,sfconn); // load our routes and pass in our app 
 
 // launch ======================================================================
 app.listen(port);
