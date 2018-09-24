@@ -25,7 +25,7 @@ module.exports = function(app,sfconn) {
                 leadsource: 'P2C Helper',
                 phone: data_array[i][17],
                 ProductInterest__c: data_array[i][0],
-                Owner: data_array[i][6]
+                Description: 'Product Manager: '+ data_array[i][6]
             }, function(err, ret) {
             if (err || !ret.success) { 
                 return console.error(err, ret); 
