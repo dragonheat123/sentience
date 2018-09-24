@@ -23,15 +23,14 @@ var infc;
 function readNfc() {
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
-        document.getElementById('nfcinfo').innerHTML = ('NFC API not supported.');
+        document.getElementById('nfcinfo').innerHTML = ('NFC API supported!');
         var messagedata = message["records"][0]["data"]
-        document.getElementById('nfcinfo').innerHTML = messagedata
         alert("Read NFC - Product!")
         inf = JSON.parse(messagedata);
         document.getElementById("products").innerHTML = inf.Product_Name;
       }, {mode: 'any'})
   } else {
-    document.getElementById('nfcinfo').innerHTML = ('NFC API not supported.');
+    document.getElementById('nfcinfo').innerHTML = ('NFC API not supported...');
   }
 }  
 
@@ -113,15 +112,6 @@ function clearinfo() {
 <form action="/index" method="post">
 <input type="hidden" id="sendproduct" name="product" value ="fdfd">
 <input type="hidden" id="sendcustomers" name="customers" value= <%= Date.now() %>>
-
-<div class="row">
-<div class="col-xs-3"></div>
-<div class="col-xs-6">
-    <button style="float: left;" type="button" class="btn btn-primary" onclick="tagproduct()">Product&nbsp&nbsp&nbsp&nbsp&nbsp</button>   
-    <button style="float: right;" type="button" class="btn btn-danger" onclick="tagcust()">&nbsp&nbspCustomer</button> 
-</div>
-<div class="col-xs-3"></div>
-</div>
 
 <div class="row">
 <div class="col-xs-3"></div>
