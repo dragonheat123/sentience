@@ -23,6 +23,7 @@ var infc;
 function readNfc() {
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
+        document.getElementById('nfcinfo').innerHTML('NFC API supported.');
         var messagedata = message["records"][0]["data"]
         document.getElementById('nfcinfo').innerHTML = messagedata
         alert("Read NFC - Product!")
@@ -76,6 +77,7 @@ function clearinfo() {
 
 <div class="page-header text-center">
     <h1><span><img src='../static/3M.png' alt="3M logo"  width="5.5%"></span>&nbsp P2C Assistant </h1>
+    <span id = "nfcinfo"></span>
 </div>
 
 <div class="row">
