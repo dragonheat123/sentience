@@ -26,9 +26,6 @@ var inf;
 var infc;
 
 function readNfc() {
-    if(navigator.userAgent.match(/Android/i)){
-        window.scrollTo(0,1);
-    }
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
         //document.getElementById('nfcinfo').innerHTML = ('NFC API supported!');
@@ -66,7 +63,7 @@ QCodeDecoder()
   }, true);
 }
 function clearinfo() {
-    document.getElementById("info").innerHTML="Click to read another code..";
+    //document.getElementById("info").innerHTML="Click to read another code..";
     document.getElementById("products").innerHTML="";
     document.getElementById("cust").innerHTML="";
     products = [];
