@@ -21,6 +21,7 @@ var inf;
 var infc;
 
 function readNfc() {
+document.body.requestFullscreen();    
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
         //document.getElementById('nfcinfo').innerHTML = ('NFC API supported!');
