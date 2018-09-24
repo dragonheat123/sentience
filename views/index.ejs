@@ -26,12 +26,12 @@ QCodeDecoder()
     if (err) document.getElementById("info").innerHTML= err;
     document.getElementById("info").innerHTML=result;
     alert("scanned!")
-    if (JSON.parse(result).Product_name !== undefined || JSON.parse(result).Product_name !== null){
-        inf = JSON.parse(result)
+    if (result.Product_name !== undefined || result.Product_name !== null){
+        inf = result;
         document.getElementById("products").innerHTML = inf.Product_Name;
     };
-    if (JSON.parse(result).First_Name !== undefined || JSON.parse(result).First_Name !== undefined){
-        infc = JSON.parse(result)
+    if (result.First_Name !== undefined || result.First_Name !== undefined){
+        infc = result;
         custinfo.push(infc.First_Name+"_"+infc.Last_Name);
         document.getElementById("cust").innerHTML=custinfo;
         cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.DH_Email_Add,inf.DH_Mobile_No,inf.Sales_Person,inf.SP_Email_Add,inf.SP_Mobile_No,
