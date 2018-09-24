@@ -25,18 +25,6 @@ QCodeDecoder()
   .decodeFromVideo(video1, function (err, result) {
     if (err) document.getElementById("info").innerHTML= err;
     document.getElementById("info").innerHTML=result;
-    if (JSON.parse(results).Product_name !== null){
-        inf = JSON.parse(result)
-        document.getElementById("products").innerHTML = inf.Product_Name;
-    };
-    if (JSON.parse(result).First_Name !== null){
-        infc = JSON.parse(result)
-        custinfo.push(infc.First_Name+"_"+infc.Last_Name);
-        document.getElementById("cust").innerHTML=custinfo;
-        cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.DH_Email_Add,inf.DH_Mobile_No,inf.Sales_Person,inf.SP_Email_Add,inf.SP_Mobile_No,
-        infc.First_Name,infc.Last_Name,infc.Job_Title,infc.Company_Name,infc.Company_Add,infc.Email_Add,infc.Office_No,infc.Mobile_No,Date.now().toString(),'#');
-        document.getElementById("sendcustomers").value = cust
-    }
   }, true);
 }
 function clearinfo() {
@@ -49,7 +37,18 @@ function clearinfo() {
     inf = [];
     infc = [];
 }
-
+function tagproduct(){
+    inf = JSON.parse(document.getElementById("info").innerHTML)
+    document.getElementById("products").innerHTML = inf.Product_Name;
+}
+function tagcust(){
+    infc = JSON.parse(document.getElementById("info").innerHTML)
+    custinfo.push(infc.First_Name+"_"+infc.Last_Name);
+    document.getElementById("cust").innerHTML=custinfo;
+    cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.DH_Email_Add,inf.DH_Mobile_No,inf.Sales_Person,inf.SP_Email_Add,inf.SP_Mobile_No,
+    infc.First_Name,infc.Last_Name,infc.Job_Title,infc.Company_Name,infc.Company_Add,infc.Email_Add,infc.Office_No,infc.Mobile_No,Date.now().toString(),'#');
+    document.getElementById("sendcustomers").value = cust
+}
 </script>
 
 </head>
@@ -66,7 +65,7 @@ function clearinfo() {
 <div id="products"></div>
 </div>
 <div class="col-md-6">
-    <video onclick="read()" style="margin-left:auto;margin-right:auto;display:block;width:100%;" autoplay playsinline id ="video" capture="environment"></video>
+    <video onclick="read()" style="margin-left:auto;margin-right:auto;display:block;width:50%;height:50%;" autoplay playsinline id ="video" capture="environment"></video>
     <div id = 'errorMsg'></div>
 </div>
 <div class="col-md-3">
