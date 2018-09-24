@@ -23,7 +23,7 @@ var infc;
 function readNfc() {
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
-        document.getElementById('nfcinfo').innerHTML('NFC API supported.');
+        document.getElementById('nfcinfo').innerHTML = ('NFC API not supported.');
         var messagedata = message["records"][0]["data"]
         document.getElementById('nfcinfo').innerHTML = messagedata
         alert("Read NFC - Product!")
@@ -31,7 +31,7 @@ function readNfc() {
         document.getElementById("products").innerHTML = inf.Product_Name;
       }, {mode: 'any'})
   } else {
-    document.getElementById('nfcinfo').innerHTML('NFC API not supported.');
+    document.getElementById('nfcinfo').innerHTML = ('NFC API not supported.');
   }
 }  
 
