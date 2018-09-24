@@ -3,6 +3,9 @@
 <html>
 <head>
 <meta name="viewport" content="width=320px, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="mobile-web-app-capable" content="yes">
 <title>Customer Sentiment Analyzer</title>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
@@ -21,6 +24,9 @@ var inf;
 var infc;
 
 function readNfc() {
+    if(navigator.userAgent.match(/Android/i)){
+        window.scrollTo(0,1);
+    }
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
         //document.getElementById('nfcinfo').innerHTML = ('NFC API supported!');
@@ -39,7 +45,7 @@ var video1 = document.getElementById("video");
 var qr = new QCodeDecoder();
 QCodeDecoder()
   .decodeFromVideo(video1, function (err, result) {
-    if (err) document.getElementById("info").innerHTML= err;
+    //if (err) document.getElementById("info").innerHTML= err;
     //document.getElementById("info").innerHTML=result;
     if (JSON.parse(result).Product_Name !== undefined ){
         alert("Scanned QR - Product!");
