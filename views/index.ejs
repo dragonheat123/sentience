@@ -30,7 +30,7 @@ function readNfc() {
     navigator.nfc.watch(function (message) {
         //document.getElementById('nfcinfo').innerHTML = ('NFC API supported!');
         var messagedata = message["records"][0]["data"]
-        alert("Read NFC - Product!")
+        alert("Read NFC - Product!"+"\n"+messagedata)
         inf = JSON.parse(messagedata);
         document.getElementById("products").innerHTML = inf.Product_Name;
       }, {mode: 'any'})
@@ -47,12 +47,12 @@ QCodeDecoder()
     //if (err) document.getElementById("info").innerHTML= err;
     //document.getElementById("info").innerHTML=result;
     if (JSON.parse(result).Product_Name !== undefined ){
-        alert("Scanned QR - Product!");
+        alert("Scanned QR - Product!"+"\n"+result);
         inf = JSON.parse(result);
         document.getElementById("products").innerHTML = inf.Product_Name;
     };
     if (JSON.parse(result).First_Name !== undefined ){
-        alert("Scanned QR - Customer!");
+        alert("Scanned QR - Customer!"+"\n"+result);
         infc = JSON.parse(result)
         custinfo.push(infc.First_Name+"_"+infc.Last_Name);
         document.getElementById("cust").innerHTML=custinfo;
