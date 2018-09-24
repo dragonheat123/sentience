@@ -73,7 +73,7 @@ function clearinfo() {
 </head>
 <body onload="init();readNfc();">
 <div id="con" style="margin-top:-20%">   
-<div class="container">
+<div class="container"><div style="margin-top: 15px;margin-bottom: 15px;"> Click to tag as: </div
 
 <div class="page-header text-center">
     <h1><span><img src='../static/3M.png' alt="3M logo"  width="5.5%"></span>&nbsp P2C Assistant </h1>
@@ -81,10 +81,9 @@ function clearinfo() {
 </div>
 
 <div class="row">
-
-<video onclick="read()" style="margin-left:auto;margin-right:auto;display:block;width:70%;" autoplay playsinline id ="video" capture="environment"></video>
-
-<div id = 'errorMsg'></div>
+<span style="margin-top: 15px;margin-bottom: 15px;"> Tap to scan QR code: </span>
+<video onclick="read()" style="margin-left:auto;margin-right:auto;display:block;width:60%;" autoplay playsinline id ="video" capture="environment"></video>
+<span id="info" "margin-left:auto"></span>
 <p align='center'><b>Product</b></p>
 <div id="products"></div>
 <p align='center'><b>Customers</b></p>
@@ -96,8 +95,7 @@ function clearinfo() {
 <div class="row">
 <div class="col-xs-3"></div>
 <div class="col-xs-6">
-    <div onlick="clearinfo()" id="info" "margin-left:auto">Click on QR code to read...</div>
-    <div style="margin-top: 15px;margin-bottom: 15px;"> Click to tag as: </div>
+    
 </div>
 <div class="col-xs-3"></div>
 </div>
