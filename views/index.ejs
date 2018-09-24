@@ -25,6 +25,9 @@ function readNfc() {
     navigator.nfc.watch(function (message) {
         var messagedata = message["records"][0]["data"]
         document.getElementById('nfcinfo').innerHTML = messagedata
+        alert("Read NFC!")
+        inf = JSON.parse(messagedata);
+        document.getElementById("products").innerHTML = inf.Product_Name;
       }, {mode: 'any'})
   } else {
     document.getElementById('nfcinfo').innerHTML('NFC API not supported.');
