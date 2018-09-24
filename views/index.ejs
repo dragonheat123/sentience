@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=320px, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Customer Sentiment Analyzer</title>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
@@ -23,7 +23,7 @@ var infc;
 function readNfc() {
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
-        document.getElementById('nfcinfo').innerHTML = ('NFC API supported!');
+        //document.getElementById('nfcinfo').innerHTML = ('NFC API supported!');
         var messagedata = message["records"][0]["data"]
         alert("Read NFC - Product!")
         inf = JSON.parse(messagedata);
@@ -72,6 +72,7 @@ function clearinfo() {
 
 </head>
 <body onload="init();readNfc();">
+<div id="con" style="margin-top=-10%">   
 <div class="container">
 
 <div class="page-header text-center">
@@ -131,6 +132,7 @@ function clearinfo() {
 
 </form>
 
+</div>
 </div>
 </body>
 </html>
