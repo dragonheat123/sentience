@@ -25,6 +25,7 @@ QCodeDecoder()
   .decodeFromVideo(video1, function (err, result) {
     if (err) document.getElementById("info").innerHTML= err;
     document.getElementById("info").innerHTML=result;
+    alert("scanned!")
     if (JSON.parse(results).Product_name !== null){
         inf = JSON.parse(result)
         document.getElementById("products").innerHTML = inf.Product_Name;
