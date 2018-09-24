@@ -26,11 +26,11 @@ QCodeDecoder()
     if (err) document.getElementById("info").innerHTML= err;
     document.getElementById("info").innerHTML=result;
     alert("scanned!")
-    if (JSON.parse(result).Product_name !== null){
+    if (JSON.parse(result).Product_name !== undefined || JSON.parse(result).Product_name !== null){
         inf = JSON.parse(result)
         document.getElementById("products").innerHTML = inf.Product_Name;
     };
-    if (JSON.parse(result).First_Name !== null){
+    if (JSON.parse(result).First_Name !== undefined || JSON.parse(result).First_Name !== undefined){
         infc = JSON.parse(result)
         custinfo.push(infc.First_Name+"_"+infc.Last_Name);
         document.getElementById("cust").innerHTML=custinfo;
