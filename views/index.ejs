@@ -9,13 +9,12 @@
 <title>Customer Sentiment Analyzer</title>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="../static/awesome-bootstrap-checkbox.css"/>
+<link rel="stylesheet" href="../static/chkbox.css"> <!-- load fontawesome -->
 
 <style>
 html, body {
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: hidden;    
 </style>
 
 <script src="../bower/qcode-decoder/build/qcode-decoder.min.js"></script>
@@ -37,10 +36,12 @@ var checkbox = document.createElement("input");
 checkbox.type = "checkbox";    // make the element a checkbox
 checkbox.name = "productselection";      // give it a name we can check on the server side
 checkbox.value = "pair";         // make its value "pair"
+checkbox.className = "styled"
 
 label.appendChild(checkbox);   // add the box to the element
 label.appendChild(description);// add the description to the element
-document.getElementById("products").className = "checkbox checkbox-md";
+label.className = "ckbox"
+document.getElementById("products").className = "checkbox checkbox-info checkbox-md";
 
 // add the label element to your div
 document.getElementById('products').appendChild(label);
@@ -115,11 +116,6 @@ function clearinfo() {
 </div>
 <div id="productinfo">Input product info here</div>
 <div id="custinfo">Input cust info here</div>
-<div class="checkbox checkbox-sm checkbox-inline">
-                        <input type="radio" id="inlineRadio1sms" value="option2" name="radioInlineSm">
-                        <label for="inlineRadio1sms"> Squared small </label>
-                        &nbsp;&nbsp;
-                    </div>
 <div id="justpadding" width=100% style="padding-bottom:50%"></div>
 </body>
 </html>
