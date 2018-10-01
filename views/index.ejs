@@ -27,6 +27,7 @@ var infc;
 var productlist = [];
 
 function readNfc() {
+document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
 messagedata = document.getElementById("productinfo").innerHTML
         inf = JSON.parse(messagedata);
         productlist = inf.P4.split(",");
@@ -45,7 +46,6 @@ messagedata = document.getElementById("productinfo").innerHTML
         }
 
   if ('nfc' in navigator) {
-    document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
     navigator.nfc.watch(function (message) {
         //document.getElementById('nfcinfo').innerHTML = ('NFC API supported!');
         var messagedata = message["records"][0]["data"]
