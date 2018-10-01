@@ -52,7 +52,7 @@ messagedata = document.getElementById("productinfo").innerHTML
         result = JSON.parse(messagedata); 
         if(result.P1 !== undefined){
             alert("Scanned QR - Product!"+"\n"+messagedata);
-            document.getElementById('products').innerHTML = "";
+            //document.getElementById('products').innerHTML = "";
             inf = JSON.parse(messagedata);
             document.getElementById('station') = inf.P2
             productlist = inf.P4.split(",");
