@@ -30,6 +30,7 @@ function readNfc() {
 document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
 messagedata = document.getElementById("productinfo").innerHTML
         inf = JSON.parse(messagedata);
+        document.getElementById('station').innerHTML = inf.P2;
         productlist = inf.P4.split(",");
         for (i=0;i<productlist.length;i++){
             var label= document.createElement("label");
@@ -54,7 +55,7 @@ messagedata = document.getElementById("productinfo").innerHTML
             alert("Scanned QR - Product!"+"\n"+messagedata);
             //document.getElementById('products').innerHTML = "";
             inf = JSON.parse(messagedata);
-            document.getElementById('station') = inf.P2
+            document.getElementById('station').innerHTML = inf.P2;
             productlist = inf.P4.split(",");
             for (i=0;i<productlist.length;i++){
                 var label= document.createElement("label");
@@ -75,7 +76,7 @@ messagedata = document.getElementById("productinfo").innerHTML
         if(result.C1 !== undefined){
             alert("Scanned QR -Customer!"+"\n"+messagedata);
             infc = JSON.parse(messagedata);
-            custinfo.push(infc.First_Name+"_"+infc.Last_Name);
+            custinfo.push(infc.C1+"_"+infc.C2);
             document.getElementById("cust").innerHTML=custinfo;
             for (i=0;i<document.getElementsByName("productselection").length;i++){
                 if (document.getElementsByName("productselection")[i]=== true){
