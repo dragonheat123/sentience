@@ -73,11 +73,11 @@ for (i=0;i<productlist.length;i++){
             document.getElementById("nfcinfo").innerHTML = "Select product and scan custinfo.";
         };
 
-        if(result.C1 !== undefined && productlist === undefined){
+        if(result.C1 !== undefined && productlist[0] === undefined){
             alert("Scan Product First!")
         }
 
-        if(result.C1 !== undefined && productlist !== undefined){
+        if(result.C1 !== undefined && productlist[0] !== undefined){
             alert("Scanned QR -Customer!"+"\n"+messagedata);
             infc = JSON.parse(messagedata);
             custinfo.push(infc.C1+"_"+infc.C2);
