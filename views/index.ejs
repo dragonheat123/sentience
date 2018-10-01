@@ -17,7 +17,6 @@ html, body {
     overflow-x: hidden;    
 </style>
 
-<script src="../bower/qcode-decoder/build/qcode-decoder.min.js"></script>
 <script>
   
 var products = [];
@@ -51,7 +50,7 @@ document.getElementById('products').appendChild(label);
         var messagedata = message["records"][0]["data"]
         alert("Read NFC - Product!"+"\n"+messagedata)
         inf = JSON.parse(messagedata);
-        document.getElementById("products").innerHTML = inf.Product_Name;
+        document.getElementById("products").innerHTML = inf.P4;
       }, {mode: 'any'})
   } else {
     document.getElementById('nfcinfo').innerHTML = ('NFC API not supported...');
@@ -113,7 +112,7 @@ function clearinfo() {
 </div>
 </div>
 <div id="productinfo">{"P1":"Singapore","P2":"Healthcare","P3":"Healthcare","P4":"3M™ Littmann® Cardiology IV™ Stethoscope,3M™ Particulate Respirator 8511,Scotch® Glass Cloth Electrical Tape 27"}</div>
-<div id="custinfo">"{"C1":"Clement","C2":"Lork","C3":"IPP Student","C4":"SUTD","C5":"8 Somapah Road","C6":"clement_lork@mymail.sutd.edu.sg","C7":"91294371","C8":"Johnathan Tay","C9":"jktay@mmm.com","C10":"98420267"}</div>
+<div id="custinfo">{"C1":"Clement","C2":"Lork","C3":"IPP Student","C4":"SUTD","C5":"8 Somapah Road","C6":"clement_lork@mymail.sutd.edu.sg","C7":"91294371","C8":"Johnathan Tay","C9":"jktay@mmm.com","C10":"98420267"}</div>
 <div id="justpadding" width=100% style="padding-bottom:50%"></div>
 </body>
 </html>
