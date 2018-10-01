@@ -27,25 +27,24 @@ var infc;
 var productlist = [];
 
 function readNfc() {
-    
-// document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
-// messagedata = document.getElementById("productinfo").innerHTML
-// inf = JSON.parse(messagedata);
-// document.getElementById('station').innerHTML = inf.P3;
-// productlist = inf.P4.split(",");
-// for (i=0;i<productlist.length;i++){
-//     var label= document.createElement("label");
-//     var description = document.createTextNode(productlist[i]);
-//     var checkbox = document.createElement("input");
+document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
+messagedata = document.getElementById("productinfo").innerHTML
+inf = JSON.parse(messagedata);
+document.getElementById('station').innerHTML = inf.P3;
+productlist = inf.P4.split(",");
+for (i=0;i<productlist.length;i++){
+    var label= document.createElement("label");
+    var description = document.createTextNode(productlist[i]);
+    var checkbox = document.createElement("input");
 
-//     checkbox.type = "checkbox";    
-//     checkbox.name = "productselection";      
-//     checkbox.value = productlist[i];         
+    checkbox.type = "checkbox";    
+    checkbox.name = "productselection";      
+    checkbox.value = productlist[i];         
 
-//     label.appendChild(checkbox);   
-//     label.appendChild(description);
-//     document.getElementById('products').appendChild(label);
-// }
+    label.appendChild(checkbox);   
+    label.appendChild(description);
+    document.getElementById('products').appendChild(label);
+}
 
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
@@ -115,22 +114,42 @@ function clearinfo() {
     custinfo = [];
     inf = [];
     infc = [];
-    // infc = JSON.parse(document.getElementById("custinfo").innerHTML);
-    // custinfo.push(infc.C1+"_"+infc.C2);
-    // document.getElementById("cust").innerHTML=custinfo;
-    // for (i=0;i<document.getElementsByName("productselection").length;i++){
-    //     if (document.getElementsByName("productselection")[i].checked=== true){
-    //         var puid = productlist[i].split('(')[1].split(')')[0]
-    //         var pname = productlist[i].split('(')[1].split(')')[1]
-    //         var suid = inf.P3.split('(')[1].split(')')[0]
-    //         var sname = inf.P3.split('(')[1].split(')')[1]
-    //     cust.push(inf.P1,inf.P2,suid,sname,puid,pname,                                  ///in tag (6)
-    //         inf.Div_Mobile,inf.Sales_Manager,inf.Sales_Email,inf.Sales_Mobile,          ///to lookup (4)
-    //         infc.C1,infc.C2,infc.C3,infc.C4,infc.C5,infc.C6,infc.C7,infc.C8,infc.C9,infc.C10,Date.now().toString(),'#');  ///intag (11)
-    //     }
-    // }
-    // document.getElementById("sendcustomers").value = cust
+}
 
+function addcust1(){
+    infc = JSON.parse(document.getElementById("custinfo1").innerHTML);
+    custinfo.push(infc.C1+"_"+infc.C2);
+    document.getElementById("cust").innerHTML=custinfo;
+    for (i=0;i<document.getElementsByName("productselection").length;i++){
+        if (document.getElementsByName("productselection")[i].checked=== true){
+            var puid = productlist[i].split('(')[1].split(')')[0]
+            var pname = productlist[i].split('(')[1].split(')')[1]
+            var suid = inf.P3.split('(')[1].split(')')[0]
+            var sname = inf.P3.split('(')[1].split(')')[1]
+        cust.push(inf.P1,inf.P2,suid,sname,puid,pname,                                  ///in tag (6)
+            inf.Div,inf.DH,inf.DH_email,inf.DH_mobile,inf.SM,inf.SM_email,inf.SM_mobile,          ///to lookup (7)
+            infc.C1,infc.C2,infc.C3,infc.C4,infc.C5,infc.C6,infc.C7,infc.C8,infc.C9,infc.C10,Date.now().toString(),'#');  ///intag (11)
+        }
+    }
+    document.getElementById("sendcustomers").value = cust
+}
+
+function addcust2(){
+    infc = JSON.parse(document.getElementById("custinfo2").innerHTML);
+    custinfo.push(infc.C1+"_"+infc.C2);
+    document.getElementById("cust").innerHTML=custinfo;
+    for (i=0;i<document.getElementsByName("productselection").length;i++){
+        if (document.getElementsByName("productselection")[i].checked=== true){
+            var puid = productlist[i].split('(')[1].split(')')[0]
+            var pname = productlist[i].split('(')[1].split(')')[1]
+            var suid = inf.P3.split('(')[1].split(')')[0]
+            var sname = inf.P3.split('(')[1].split(')')[1]
+        cust.push(inf.P1,inf.P2,suid,sname,puid,pname,                                  ///in tag (6)
+            inf.Div,inf.DH,inf.DH_email,inf.DH_mobile,inf.SM,inf.SM_email,inf.SM_mobile,          ///to lookup (7)
+            infc.C1,infc.C2,infc.C3,infc.C4,infc.C5,infc.C6,infc.C7,infc.C8,infc.C9,infc.C10,Date.now().toString(),'#');  ///intag (11)
+        }
+    }
+    document.getElementById("sendcustomers").value = cust
 }
 </script>
 
@@ -171,7 +190,8 @@ function clearinfo() {
     <button id ="submit" type="submit" style="float: right;margin-right:15%" type="button" class="btn btn-success">&nbspSend Data</button>
 </div>
 </div>
-
+    <button style="float: left;margin-left:15%" type="button" class="btn btn-primary" value="0" onclick="addcust1()">Cust*</button>
+    <button style="float: left;margin-right:15%" type="button" class="btn btn-danger" value="0" onclick="addcust2()">Cust</button>
 
 </form>
 
@@ -179,6 +199,7 @@ function clearinfo() {
 </div>
 <div id="justpadding" width=100% style="padding-bottom:100%"></div>
 <div id="productinfo">{"P1":"Singapore","P2":"Healthcare Group","P3":"(12) AMK CTC Healthcare","P4":"(123) 3M™ Littmann® Cardiology IV™ Stethoscope,(457) 3M™ Particulate Respirator 8511,(555) Scotch® Glass Cloth Electrical Tape 27, (979) Nexcare™ Acne Patch Variety Pack"}</div>
-<div id="custinfo">{"C1":"Clement","C2":"Lork","C3":"IPP Student","C4":"SUTD","C5":"8 Somapah Road","C6":"clement_lork@mymail.sutd.edu.sg","C7":"91294371","C8":"Johnathan Tay","C9":"jktay@mmm.com","C10":"98420267"}</div>
+<div id="custinfo1">{"C1":"Clement","C2":"Lork","C3":"IPP Student","C4":"SUTD","C5":"8 Somapah Road","C6":"clement_lork@mymail.sutd.edu.sg","C7":"91294371","C8":"Johnathan Tay","C9":"jktay@mmm.com","C10":"98420267"}</div>
+<div id="custinfo2">{"C1":"Peter","C2":"Low","C3":"Product Manager","C4":"3M Singapore","C5":"Gambas Ave","C6":"jktay@mmm.com","C7":"91294371","C8":"","C9":"","C10":""}</div>
 </body>
 </html>
