@@ -9,8 +9,6 @@
 <title>Customer Sentiment Analyzer</title>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="../static/awesome-bootstrap-checkbox.css"/>
 
 <style>
 html, body {
@@ -28,25 +26,7 @@ var inf;
 var infc;
 
 function readNfc() {
-
-
-var label= document.createElement("label");
-var description = document.createTextNode("pair");
-var checkbox = document.createElement("input");
-
-checkbox.type = "checkbox";    // make the element a checkbox
-checkbox.name = "productselection";      // give it a name we can check on the server side
-checkbox.value = "pair";         // make its value "pair"
-
-label.appendChild(checkbox);   // add the box to the element
-label.appendChild(description);// add the description to the element
-document.getElementById("products").className = "checkbox checkbox-md";
-
-// add the label element to your div
-document.getElementById('products').appendChild(label);
- 
   if ('nfc' in navigator) {
-    document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
     navigator.nfc.watch(function (message) {
         //document.getElementById('nfcinfo').innerHTML = ('NFC API supported!');
         var messagedata = message["records"][0]["data"]
@@ -59,6 +39,29 @@ document.getElementById('products').appendChild(label);
   }
 }  
 
+function read() {
+var video1 = document.getElementById("video");
+var qr = new QCodeDecoder();
+QCodeDecoder()
+  .decodeFromVideo(video1, function (err, result) {
+    //if (err) document.getElementById("info").innerHTML= err;
+    //document.getElementById("info").innerHTML=result;
+    if (JSON.parse(result).Product_Name !== undefined ){
+        alert("Scanned QR - Product!"+"\n"+result);
+        inf = JSON.parse(result);
+        document.getElementById("products").innerHTML = inf.Product_Name;
+    };
+    if (JSON.parse(result).First_Name !== undefined ){
+        alert("Scanned QR - Customer!"+"\n"+result);
+        infc = JSON.parse(result)
+        custinfo.push(infc.First_Name+"_"+infc.Last_Name);
+        document.getElementById("cust").innerHTML=custinfo;
+        cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.Div_Email,inf.Div_Mobile,inf.Sales_Manager,inf.Sales_Email,inf.Sales_Mobile,
+        infc.First_Name,infc.Last_Name,infc.Job_Title,infc.Company,infc.Company_Add,infc.Email,infc.Office,infc.Mobile,Date.now().toString(),'#');
+        document.getElementById("sendcustomers").value = cust
+    };
+  }, true);
+}
 function clearinfo() {
     //document.getElementById("info").innerHTML="Click to read another code..";
     document.getElementById("products").innerHTML="";
@@ -72,7 +75,7 @@ function clearinfo() {
 </script>
 
 </head>
-<body onload="readNfc();">
+<body onload="init();readNfc();">
 <div id="con" style="margin-top:5%">   
 <div class="page-header text-center">
     <h1><span><img src='../static/3M.png' alt="3M logo"  width="5.5%"></span>&nbsp P2C Assistant </h1>
@@ -80,6 +83,8 @@ function clearinfo() {
 </div>
 
 <div class="row">
+<span style="margin-left:15%;margin-right:15%"> Tap to scan QR code: </span>
+<video onclick="read()" style="margin-left:auto;margin-right:auto;display:block;width:60%;" autoplay playsinline id ="video" capture="environment"></video>
 <span id="info" style="margin-left:15%"></span>
 <p align='center'><b>Product</b></p>
 <div style="margin-left:15%;margin-right:15%;overflow-wrap: break-word;" id="products"></div>
@@ -97,6 +102,11 @@ function clearinfo() {
 <div class="col-xs-3"></div>
 </div>
 
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="../static/webrtcvideo.js"></script>
+
+
+
 <form action="/index" method="post">
 <input type="hidden" id="sendproduct" name="product" value ="fdfd">
 <input type="hidden" id="sendcustomers" name="customers" value= <%= Date.now() %>>
@@ -113,13 +123,6 @@ function clearinfo() {
 
 </div>
 </div>
-<div id="productinfo">Input product info here</div>
-<div id="custinfo">Input cust info here</div>
-<div class="checkbox checkbox-sm checkbox-inline">
-                        <input type="radio" id="inlineRadio1sms" value="option2" name="radioInlineSm">
-                        <label for="inlineRadio1sms"> Squared small </label>
-                        &nbsp;&nbsp;
-                    </div>
 <div id="justpadding" width=100% style="padding-bottom:50%"></div>
 </body>
 </html>
