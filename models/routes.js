@@ -12,27 +12,31 @@ module.exports = function(app,sfconn) {
     });
 
     app.post('/index', async (req, res) => {
-        console.log(req.body.customers.split(',#,').length);
-        var data_array = new Array(req.body.customers.split(',#,').length).fill(null).map(()=>new Array(17).fill(null));
-        for (i=0;i<req.body.customers.split(',#,').length;i++){
-            data_array[i]=req.body.customers.split(',#,')[i].split(',')
-            sfconn.sobject("Lead").create({
-                email : data_array[i][14],
-                firstname : data_array[i][9],
-                lastname : data_array[i][10],
-                title : data_array[i][11],
-                company : data_array[i][12],
-                leadsource: 'P2C Helper',
-                phone: '+65'+data_array[i][16],
-                ProductInterest__c: data_array[i][0],
-                Description: 'Product Manager: '+ data_array[i][6] 
-            }, function(err, ret) {
-            if (err || !ret.success) { 
-                return console.error(err, ret); 
-            }
-            });
-        };   
+        console.log(req.body.customers.split(',#,'));
+        console.log('dfsdf');
+        var data_array = new Array(req.body.customers.split(',#,').length).fill(null).map(()=>new Array(21).fill(null));
+        
+        ///send to salesforce
+        // for (i=0;i<req.body.customers.split(',#,').length;i++){
+        //     data_array[i]=req.body.customers.split(',#,')[i].split(',')
+        //     sfconn.sobject("Lead").create({
+        //         email : data_array[i][14],
+        //         firstname : data_array[i][9],
+        //         lastname : data_array[i][10],
+        //         title : data_array[i][11],
+        //         company : data_array[i][12],
+        //         leadsource: 'P2C Helper',
+        //         phone: '+65'+data_array[i][16],
+        //         ProductInterest__c: data_array[i][0],
+        //         Description: 'Product Manager: '+ data_array[i][6] 
+        //     }, function(err, ret) {
+        //     if (err || !ret.success) { 
+        //         return console.error(err, ret); 
+        //     }
+        //     });
+        // };   
 
+        ///send to gsheets
         let  arry =  data_array[req.body.customers.split(',#,').length-1];
         let popped = arry.pop();
 
@@ -53,7 +57,7 @@ module.exports = function(app,sfconn) {
                 sheetsApi.spreadsheets.values.append({
                     auth: auth,
                     spreadsheetId: SPREADSHEET_ID,
-                    range: 'Sheet1!A2:B',
+                    range: 'Sheet1!A3:B',
                     valueInputOption: "USER_ENTERED",
                     resource: {
                         values: data_array

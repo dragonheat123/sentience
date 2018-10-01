@@ -27,24 +27,25 @@ var infc;
 var productlist = [];
 
 function readNfc() {
-document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
-messagedata = document.getElementById("productinfo").innerHTML
-        inf = JSON.parse(messagedata);
-        document.getElementById('station').innerHTML = inf.P2;
-        productlist = inf.P4.split(",");
-        for (i=0;i<productlist.length;i++){
-            var label= document.createElement("label");
-            var description = document.createTextNode(productlist[i]);
-            var checkbox = document.createElement("input");
+    
+// document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
+// messagedata = document.getElementById("productinfo").innerHTML
+// inf = JSON.parse(messagedata);
+// document.getElementById('station').innerHTML = inf.P3;
+// productlist = inf.P4.split(",");
+// for (i=0;i<productlist.length;i++){
+//     var label= document.createElement("label");
+//     var description = document.createTextNode(productlist[i]);
+//     var checkbox = document.createElement("input");
 
-            checkbox.type = "checkbox";    
-            checkbox.name = "productselection";      
-            checkbox.value = productlist[i];         
+//     checkbox.type = "checkbox";    
+//     checkbox.name = "productselection";      
+//     checkbox.value = productlist[i];         
 
-            label.appendChild(checkbox);   
-            label.appendChild(description);
-            document.getElementById('products').appendChild(label);
-        }
+//     label.appendChild(checkbox);   
+//     label.appendChild(description);
+//     document.getElementById('products').appendChild(label);
+// }
 
   if ('nfc' in navigator) {
     navigator.nfc.watch(function (message) {
@@ -79,9 +80,14 @@ messagedata = document.getElementById("productinfo").innerHTML
             custinfo.push(infc.C1+"_"+infc.C2);
             document.getElementById("cust").innerHTML=custinfo;
             for (i=0;i<document.getElementsByName("productselection").length;i++){
-                if (document.getElementsByName("productselection")[i]=== true){
-                cust.push(inf.Product_Name,inf.Country,inf.Division,inf.Division_Head,inf.Div_Email,inf.Div_Mobile,inf.Sales_Manager,inf.Sales_Email,inf.Sales_Mobile,
-                    infc.First_Name,infc.Last_Name,infc.Job_Title,infc.Company,infc.Company_Add,infc.Email,infc.Office,infc.Mobile,Date.now().toString(),'#');
+                if (document.getElementsByName("productselection")[i].checked=== true){
+                    var puid = productlist[i].split('(')[1].split(')')[0]
+                    var pname = productlist[i].split('(')[1].split(')')[1]
+                    var suid = inf.P3.split('(')[1].split(')')[0]
+                    var sname = inf.P3.split('(')[1].split(')')[1]
+                cust.push(inf.P1,inf.P2,suid,sname,puid,pname,                                  ///in tag (6)
+                    inf.Div_Mobile,inf.Sales_Manager,inf.Sales_Email,inf.Sales_Mobile,          ///to lookup (4)
+                    infc.C1,infc.C2,infc.C3,infc.C4,infc.C5,infc.C6,infc.C7,infc.C8,infc.C9,infc.C10,Date.now().toString(),'#');  ///intag (11)
                 }
             }
             document.getElementById("sendcustomers").value = cust
@@ -94,16 +100,37 @@ messagedata = document.getElementById("productinfo").innerHTML
 }  
 
 function clearinfo() {
-    //document.getElementById("info").innerHTML="Click to read another code..";
+    document.getElementById("info").innerHTML="Click to read another code..";
     document.getElementById("products").innerHTML="";
     document.getElementById("cust").innerHTML="";
     document.getElementById("station").innerHTML="";
     document.getElementById("nfcinfo").innerHTML="Scan Product NFC to begin...";
     products = [];
+    productlist = [];
+    puid = [];
+    pname = [];
+    suid = [];
+    sname = [];
     cust = [];
     custinfo = [];
     inf = [];
     infc = [];
+    // infc = JSON.parse(document.getElementById("custinfo").innerHTML);
+    // custinfo.push(infc.C1+"_"+infc.C2);
+    // document.getElementById("cust").innerHTML=custinfo;
+    // for (i=0;i<document.getElementsByName("productselection").length;i++){
+    //     if (document.getElementsByName("productselection")[i].checked=== true){
+    //         var puid = productlist[i].split('(')[1].split(')')[0]
+    //         var pname = productlist[i].split('(')[1].split(')')[1]
+    //         var suid = inf.P3.split('(')[1].split(')')[0]
+    //         var sname = inf.P3.split('(')[1].split(')')[1]
+    //     cust.push(inf.P1,inf.P2,suid,sname,puid,pname,                                  ///in tag (6)
+    //         inf.Div_Mobile,inf.Sales_Manager,inf.Sales_Email,inf.Sales_Mobile,          ///to lookup (4)
+    //         infc.C1,infc.C2,infc.C3,infc.C4,infc.C5,infc.C6,infc.C7,infc.C8,infc.C9,infc.C10,Date.now().toString(),'#');  ///intag (11)
+    //     }
+    // }
+    // document.getElementById("sendcustomers").value = cust
+
 }
 </script>
 
@@ -151,7 +178,7 @@ function clearinfo() {
 </div>
 </div>
 <div id="justpadding" width=100% style="padding-bottom:100%"></div>
-<div id="productinfo">{"P1":"Singapore","P2":"Healthcare","P3":"Healthcare","P4":"(123) 3M™ Littmann® Cardiology IV™ Stethoscope,(457) 3M™ Particulate Respirator 8511,(555) Scotch® Glass Cloth Electrical Tape 27, (979) Nexcare™ Acne Patch Variety Pack"}</div>
+<div id="productinfo">{"P1":"Singapore","P2":"Healthcare Group","P3":"(12) AMK CTC Healthcare","P4":"(123) 3M™ Littmann® Cardiology IV™ Stethoscope,(457) 3M™ Particulate Respirator 8511,(555) Scotch® Glass Cloth Electrical Tape 27, (979) Nexcare™ Acne Patch Variety Pack"}</div>
 <div id="custinfo">{"C1":"Clement","C2":"Lork","C3":"IPP Student","C4":"SUTD","C5":"8 Somapah Road","C6":"clement_lork@mymail.sutd.edu.sg","C7":"91294371","C8":"Johnathan Tay","C9":"jktay@mmm.com","C10":"98420267"}</div>
 </body>
 </html>
