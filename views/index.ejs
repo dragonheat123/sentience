@@ -49,27 +49,30 @@ messagedata = document.getElementById("productinfo").innerHTML
     navigator.nfc.watch(function (message) {
         //document.getElementById('nfcinfo').innerHTML = ('NFC API supported!');
         var messagedata = message["records"][0]["data"]
-        alert("Read NFC - Product!"+"\n"+messagedata)
-        messagedata = document.getelementByID("productinfo").innerHTML
-        inf = JSON.parse(messagedata);
-        productlist = inf.P4.split(",");
-        for (i=0;i<productlist.length;i++){
-            var label= document.createElement("label");
-            var description = document.createTextNode("pair");
-            var checkbox = document.createElement("input");
+        inf = JSON.parse(messagedata); 
+        if(inf.P1 !== undefined){
+            alert("Scanned QR - Product!"+"\n"+messagedata);
+            inf = JSON.parse(messagedata);
+            productlist = inf.P4.split(",");
+            for (i=0;i<productlist.length;i++){
+                var label= document.createElement("label");
+                var description = document.createTextNode("pair");
+                var checkbox = document.createElement("input");
 
-            checkbox.type = "checkbox";    // make the element a checkbox
-            checkbox.name = "productselection";      // give it a name we can check on the server side
-            checkbox.value = productlist[i];         // make its value "pair"
+                checkbox.type = "checkbox";    // make the element a checkbox
+                checkbox.name = "productselection";      // give it a name we can check on the server side
+                checkbox.value = productlist[i];         // make its value "pair"
 
-            label.appendChild(checkbox);   // add the box to the element
-            label.appendChild(description);// add the description to the element
-            document.getElementById('products').appendChild(label);
+                label.appendChild(checkbox);   // add the box to the element
+                label.appendChild(description);// add the description to the element
+                document.getElementById('products').appendChild(label);
+            };
         };
 
-
-
-
+        if(inf.C1 !== undefined){
+            alert("Scanned QR -Customer!"+"\n"+messagedata);
+            //fdsfd
+        };
 
       }, {mode: 'any'})
   } else {
@@ -131,7 +134,7 @@ function clearinfo() {
 
 </div>
 </div>
-<div id="productinfo">{"P1":"Singapore","P2":"Healthcare","P3":"Healthcare","P4":"(123) 3M™ Littmann® Cardiology IV™ Stethoscope,(457) 3M™ Particulate Respirator 8511,(555) Scotch® Glass Cloth Electrical Tape 27"}</div>
+<div id="productinfo">{"P1":"Singapore","P2":"Healthcare","P3":"Healthcare","P4":"(123) 3M™ Littmann® Cardiology IV™ Stethoscope,(457) 3M™ Particulate Respirator 8511,(555) Scotch® Glass Cloth Electrical Tape 27, (979) Nexcare™ Acne Patch Variety Pack"}</div>
 <div id="custinfo">{"C1":"Clement","C2":"Lork","C3":"IPP Student","C4":"SUTD","C5":"8 Somapah Road","C6":"clement_lork@mymail.sutd.edu.sg","C7":"91294371","C8":"Johnathan Tay","C9":"jktay@mmm.com","C10":"98420267"}</div>
 <div id="justpadding" width=100% style="padding-bottom:50%"></div>
 </body>
