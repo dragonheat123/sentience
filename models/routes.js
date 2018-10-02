@@ -21,15 +21,14 @@ module.exports = function(app,sfconn) {
             data_array[i]=req.body.customers.split(',#,')[i].split(',')
             //send to salesforce 
             // sfconn.sobject("Lead").create({
-            //     email : data_array[i][14],
-            //     firstname : data_array[i][9],
-            //     lastname : data_array[i][10],
-            //     title : data_array[i][11],
-            //     company : data_array[i][12],
+            //     email : data_array[i][18],
+            //     firstname : data_array[i][13],
+            //     lastname : data_array[i][14],
+            //     title : data_array[i][15],
+            //     company : data_array[i][16],
             //     leadsource: 'P2C Helper',
-            //     phone: '+65'+data_array[i][16],
-            //     ProductInterest__c: data_array[i][0],
-            //     Description: 'Product Manager: '+ data_array[i][6] 
+            //     phone: '+65'+data_array[i][19],
+            //     ProductInterest__c: data_array[i][5],
             // }, function(err, ret) {
             // if (err || !ret.success) { 
             //     return console.error(err, ret); 
