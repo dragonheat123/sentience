@@ -4,6 +4,7 @@
 require('dotenv').config()
 var sslRedirect = require('heroku-ssl-redirect');
 var express  = require('express');
+var favicon = require('serve-favicon')
 var path = require('path');
 var app      = express();
 var port     = process.env.PORT || 8080;
@@ -17,6 +18,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+///add favicon
+app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')))
 
 // configuration ===============================================================
 //var mgurl = process.env.MONGODB_URI;
