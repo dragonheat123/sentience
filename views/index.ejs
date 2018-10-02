@@ -37,6 +37,7 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
         if(result.P1 !== undefined){
             alert("Scanned QR - Product!"+"\n"+messagedata);
             document.getElementById('products').innerHTML = "";
+            clearinfo();
             inf = JSON.parse(messagedata);
             document.getElementById('station').innerHTML = inf.P2;
             productlist = inf.P4.split(",");
