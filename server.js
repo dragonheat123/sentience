@@ -19,7 +19,7 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
 ///add favicon
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')))
 
 // configuration ===============================================================
 //var mgurl = process.env.MONGODB_URI;
