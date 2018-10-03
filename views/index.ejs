@@ -77,6 +77,7 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
                     var pname = productlist[i].split('(')[1].split(')')[1]
                     var suid = inf.P3.split('(')[1].split(')')[0]
                     var sname = inf.P3.split('(')[1].split(')')[1]
+                    alert(infc.C1);
                 cust.push(inf.P1,inf.P2,suid,sname,puid,pname,                                  ///in tag (6)
                     inf.Div_Mobile,inf.Sales_Manager,inf.Sales_Email,inf.Sales_Mobile,          ///to lookup (4)
                     infc.C1,infc.C2,infc.C3,infc.C4,infc.C5,infc.C6,infc.C7,infc.C8,infc.C9,infc.C10,Date.now().toString(),'#');  ///intag (11)
