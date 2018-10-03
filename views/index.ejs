@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 <link rel="stylesheet" href="../static/chkbox.css"> <!-- load fontawesome -->
+<link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
 
 <style>
 html, body {
@@ -106,41 +107,6 @@ function clearinfo() {
     infc = [];
 }
 
-function addcust1(){
-    infc = JSON.parse(document.getElementById("custinfo1").innerHTML);
-    custinfo.push(infc.C1+"_"+infc.C2);
-    document.getElementById("cust").innerHTML=custinfo;
-    for (i=0;i<document.getElementsByName("productselection").length;i++){
-        if (document.getElementsByName("productselection")[i].checked=== true){
-            var puid = productlist[i].split('(')[1].split(')')[0]
-            var pname = productlist[i].split('(')[1].split(')')[1]
-            var suid = inf.P3.split('(')[1].split(')')[0]
-            var sname = inf.P3.split('(')[1].split(')')[1]
-        cust.push(inf.P1,inf.P2,suid,sname,puid,pname,                                  ///in tag (6)
-            inf.Div,inf.DH,inf.DH_email,inf.DH_mobile,inf.SM,inf.SM_email,inf.SM_mobile,          ///to lookup (7)
-            infc.C1,infc.C2,infc.C3,infc.C4,infc.C5,infc.C6,infc.C7,infc.C8,infc.C9,infc.C10,Date.now().toString(),'#');  ///intag (11)
-        }
-    }
-    document.getElementById("sendcustomers").value = cust
-}
-
-function addcust2(){
-    infc = JSON.parse(document.getElementById("custinfo2").innerHTML);
-    custinfo.push(infc.C1+"_"+infc.C2);
-    document.getElementById("cust").innerHTML=custinfo;
-    for (i=0;i<document.getElementsByName("productselection").length;i++){
-        if (document.getElementsByName("productselection")[i].checked=== true){
-            var puid = productlist[i].split('(')[1].split(')')[0]
-            var pname = productlist[i].split('(')[1].split(')')[1]
-            var suid = inf.P3.split('(')[1].split(')')[0]
-            var sname = inf.P3.split('(')[1].split(')')[1]
-        cust.push(inf.P1,inf.P2,suid,sname,puid,pname,                                  ///in tag (6)
-            inf.Div,inf.DH,inf.DH_email,inf.DH_mobile,inf.SM,inf.SM_email,inf.SM_mobile,          ///to lookup (7)
-            infc.C1,infc.C2,infc.C3,infc.C4,infc.C5,infc.C6,infc.C7,infc.C8,infc.C9,infc.C10,Date.now().toString(),'#');  ///intag (11)
-        }
-    }
-    document.getElementById("sendcustomers").value = cust
-}
 </script>
 
 </head>
