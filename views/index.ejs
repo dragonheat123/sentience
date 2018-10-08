@@ -75,12 +75,12 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
         if(result.C1 !== undefined && productlist[0] === undefined){
             alert("Scan Product First!")
         }
-        if(result.C1 !== undefined && productlist[0] === checkChcked){
+        if(result.C1 !== undefined && checkChcked()===0){
             alert("Select Product First!")
         }
 
 
-        if(result.C1 !== undefined && productlist[0] !== undefined && checkChecked!==0){
+        if(result.C1 !== undefined && productlist[0] !== undefined && checkChecked()!==0){
             //alert("Scanned QR -Customer!"+"\n"+messagedata);
             infc = JSON.parse(messagedata);
             //custinfo.push(infc.C1+"_"+infc.C2);
