@@ -34,11 +34,11 @@ var infc;
 var productlist = [];
 
 function checkChecked(){
-    var i = 0;
+    var chknum = 0;
     document.getElementById("cust").innerHTML=custinfo;
     for (i=0;i<document.getElementsByName("productselection").length;i++){
-        i = i + document.getElementsByName("productselection")[i].checked}
-    return i 
+        chknum = chknum + document.getElementsByName("productselection")[i].checked}
+    return chknum 
     }
 
 
