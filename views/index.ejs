@@ -85,15 +85,15 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
             //alert("Scanned QR -Customer!"+"\n"+messagedata);
             infc = JSON.parse(messagedata);
             //custinfo.push(infc.C1+"_"+infc.C2);
-            if(infc.C8!==""){
-                custinfo.push(infc.C1+"_"+infc.C2+'*');
-            }else{
-                 custinfo.push(infc.C1+"_"+infc.C2);
+            if(infc.C8!=="" && custinfo.include(infc.C1+" "+infc.C2+'*')==false){
+                custinfo.push(infc.C1+" "+infc.C2+'*');
+            }else if(custinfo.include(infc.C1+" "+infc.C2)==false){
+                 custinfo.push(infc.C1+" "+infc.C2);
             }
             document.getElementById("cust").innerHTML=custinfo;
             for (i=0;i<document.getElementsByName("productselection").length;i++){
                 document.getElementsByName("productselection")[i].disabled = true;
-                if (document.getElementsByName("productselection")[i].checked=== true){
+                if (document.getElementsByName("productselection")[i].checked=== true && custinfo.include(infc.C1+" "+infc.C2)==false){
                     var puid = productlist[i].split('(')[1].split(')')[0]
                     var pname = productlist[i].split('(')[1].split(')')[1]
                     var suid = inf.P3.split('(')[1].split(')')[0]
@@ -164,12 +164,9 @@ function clearinfo() {
 
 <div class="row" style="margin-top:10%">
 <div>
-    <button style="float: left;margin-left:20%;font-size:20px" type="button" class="btn" value="0" onclick="clearinfo()">Clear Data&nbsp</button>
-    <button id ="submit" type="submit" style="float: right;margin-right:20%;font-size:20px" type="button" class="btn btn-success">&nbspSend Data</button>
+    <button style="float: left;margin-left:15%;font-size:20px" type="button" class="btn" value="0" onclick="clearinfo()">Clear Data&nbsp</button>
+    <button id ="submit" type="submit" style="float: right;margin-right:15%;font-size:20px" type="button" class="btn btn-success">&nbspSend Data</button>
 </div>
-</div>
-</form>
-
 </div>
 </div>
 <div id="justpadding" width=100% style="padding-bottom:100%"></div>
