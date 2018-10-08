@@ -20,20 +20,21 @@ module.exports = function(app,sfconn) {
         for (i=0;i<req.body.customers.split(',#,').length;i++){
             data_array[i]=req.body.customers.split(',#,')[i].split(',')
             //send to salesforce 
-            // sfconn.sobject("Lead").create({
-            //     email : data_array[i][18],
-            //     firstname : data_array[i][13],
-            //     lastname : data_array[i][14],
-            //     title : data_array[i][15],
-            //     company : data_array[i][16],
-            //     leadsource: 'P2C Helper',
-            //     phone: '+65'+data_array[i][19],
-            //     ProductInterest__c: data_array[i][5],
-            // }, function(err, ret) {
-            // if (err || !ret.success) { 
-            //     return console.error(err, ret); 
-            // }
-            // });
+            sfconn.sobject("Lead").create({
+                email : data_array[i][18],
+                firstname : data_array[i][13],
+                lastname : data_array[i][14],
+                title : data_array[i][15],
+                company : data_array[i][16],
+                leadsource: 'P2C Helper',
+                phone: '+65'+data_array[i][19],
+                ProductInterest__c: data_array[i][5],
+                //Description: 'Product Manager: '+ data_array[i][6] 
+            }, function(err, ret) {
+            if (err || !ret.success) { 
+                return console.error(err, ret); 
+            }
+            });
         };   
 
         ///send to gsheets

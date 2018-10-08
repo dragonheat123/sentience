@@ -35,7 +35,7 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
         var messagedata = message["records"][0]["data"]
         result = JSON.parse(messagedata); 
         if(result.P1 !== undefined){
-            alert("Scanned QR - Product!"+"\n"+messagedata);
+            //alert("Scanned QR - Product!"+"\n"+messagedata);
             document.getElementById('products').innerHTML = "";
             clearinfo();
             inf = JSON.parse(messagedata);
@@ -43,7 +43,7 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
             productlist = inf.P4.split(",");
             for (i=0;i<productlist.length;i++){
                 var label= document.createElement("label");
-                var description = document.createTextNode(productlist[i]);
+                var description = document.createTextNode(productlist[i].split('(')[1].split(')')[1]);
                 var checkbox = document.createElement("input");
 
                 checkbox.type = "checkbox";    
@@ -62,7 +62,7 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
         }
 
         if(result.C1 !== undefined && productlist[0] !== undefined){
-            alert("Scanned QR -Customer!"+"\n"+messagedata);
+            //alert("Scanned QR -Customer!"+"\n"+messagedata);
             infc = JSON.parse(messagedata);
             //custinfo.push(infc.C1+"_"+infc.C2);
             if(infc.C8!==""){
@@ -78,7 +78,7 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
                     var suid = inf.P3.split('(')[1].split(')')[0]
                     var sname = inf.P3.split('(')[1].split(')')[1]
                 cust.push(inf.P1,inf.P2,suid,sname,puid,pname,                                  ///in tag (6)
-                    inf.div,inf.dh,inf.dhemail,inf.Div_Mobile,inf.Sales_Manager,inf.Sales_Email,inf.Sales_Mobile,          ///to lookup (4)
+                    inf.div,inf.dh,inf.dhemail,inf.Div_Mobile,inf.Sales_Manager,inf.Sales_Email,inf.Sales_Mobile,          ///to lookup (7)
                     infc.C1,infc.C2,infc.C3,infc.C4,infc.C5,infc.C6,infc.C7,infc.C8,infc.C9,infc.C10,Date.now().toString(),'#');  ///intag (11)
                 }
             }
@@ -114,16 +114,16 @@ function clearinfo() {
 <body onload="readNfc();">
 <div id="con" style="margin-top:5%">   
 <div class="page-header text-center">
-    <h1><span><img src='../static/3M.png' alt="3M logo"  width="5.5%"></span>&nbsp P2C Assistant </h1>
+    <h1><span><img src='../static/3M.png' alt="3M logo"  width="64px"></span>&nbsp P2C Assistant </h1>
     <span id = "nfcinfo"></span>
 </div>
 
 <div class="row">
 <span id="info" style="margin-left:15%"></span>
-<p align='center'><b>Product</b></p>
+<p align='center' style="font-size:20px"><b>Product</b></p>
 <div style="margin-left:15%;margin-right:15%;overflow-wrap: break-word;" id="station"></div>
 <div style="margin-left:15%;margin-right:15%;overflow-wrap: break-word;" id="products"></div>
-<p align='center'><b>Customers</b></p>
+<p align='center' style="font-size:20px"><b>Customers</b></p>
 <div style="margin-left:15%;margin-right:15%;overflow-wrap: break-word;" id="cust"></div>
 </div>
 
@@ -143,8 +143,8 @@ function clearinfo() {
 
 <div class="row">
 <div>
-    <button style="float: left;margin-left:15%" type="button" class="btn" value="0" onclick="clearinfo()">Clear Data&nbsp</button>
-    <button id ="submit" type="submit" style="float: right;margin-right:15%" type="button" class="btn btn-success">&nbspSend Data</button>
+    <button style="float: left;margin-left:20%" type="button" class="btn" value="0" onclick="clearinfo()">Clear Data&nbsp</button>
+    <button id ="submit" type="submit" style="float: right;margin-right:20%" type="button" class="btn btn-success">&nbspSend Data</button>
 </div>
 </div>
 </form>
