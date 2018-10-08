@@ -41,11 +41,6 @@ function checkChecked(){
     return chknum 
     }
 
-function checkUniq(){
-    var chkuniq=custinfo.includes(nfc.C1+" "+infc.C2+'*')
-}
-
-
 function readNfc() {
 document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
   if ('nfc' in navigator) {
@@ -89,7 +84,7 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
             //alert("Scanned QR -Customer!"+"\n"+messagedata);
             infc = JSON.parse(messagedata);
             //custinfo.push(infc.C1+"_"+infc.C2);
-            if(infc.C8!=="" && custinfo.includes(nfc.C1+" "+infc.C2+'*')!=true){
+            if(infc.C8!=="" ){
                 custinfo.push(infc.C1+" "+infc.C2+'*');
             }elseif(custinfo.includes(nfc.C1+" "+infc.C2+'*')!=true){
                  custinfo.push(infc.C1+" "+infc.C2);
