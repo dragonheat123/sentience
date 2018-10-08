@@ -93,6 +93,7 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
             document.getElementById("cust").innerHTML=custinfo;
             for (i=0;i<document.getElementsByName("productselection").length;i++){
                 if (document.getElementsByName("productselection")[i].checked=== true){
+                    document.getElementById("productionselection").disabled = true;
                     var puid = productlist[i].split('(')[1].split(')')[0]
                     var pname = productlist[i].split('(')[1].split(')')[1]
                     var suid = inf.P3.split('(')[1].split(')')[0]
