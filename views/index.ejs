@@ -68,6 +68,7 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
                 label.appendChild(checkbox);   
                 label.appendChild(description);
                 document.getElementById('products').appendChild(label);
+                beep();
             };
             document.getElementById("nfcinfo").innerHTML = "Select product and scan custinfo.";
         };
@@ -104,6 +105,7 @@ document.getElementById("nfcinfo").innerHTML = "Scan Product NFC to begin...";
                 }
             }
             document.getElementById("sendcustomers").value = cust
+            beep();
         };
 
       }, {mode: 'any'})
@@ -127,6 +129,27 @@ function clearinfo() {
     custinfo = [];
     inf = [];
     infc = [];
+}
+
+audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+var oscillator = audioCtx.createOscillator();
+var gainNode = audioCtx.createGain();
+oscillator.connect(gainNode);
+gainNode.connect(audioCtx.destination);
+
+gainNode.gain.value = 100;
+oscillator.frequency.value = 2000;
+oscillator.type = 1;
+
+function beep() {
+    oscillator.start();
+
+  setTimeout(
+    function() {
+      oscillator.stop();
+    },
+    200
+  );
 }
 
 </script>
