@@ -132,16 +132,17 @@ function clearinfo() {
 }
 
 audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-var oscillator = audioCtx.createOscillator();
-var gainNode = audioCtx.createGain();
-oscillator.connect(gainNode);
-gainNode.connect(audioCtx.destination);
 
-gainNode.gain.value = 100;
-oscillator.frequency.value = 2000;
-oscillator.type = 1;
 
 function beep() {
+    var oscillator = audioCtx.createOscillator();
+    var gainNode = audioCtx.createGain();
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    gainNode.gain.value = 100;
+    oscillator.frequency.value = 2000;
+    oscillator.type = 1;
     oscillator.start();
 
   setTimeout(
