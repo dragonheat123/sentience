@@ -16,6 +16,7 @@ html, body {
     overflow-x: hidden;
 </style>
 
+<script src="https://docs.opencv.org/master/opencv.js" type="text/javascript"></script>
 <script src="../bower/qcode-decoder/build/qcode-decoder.min.js"></script>
 <script>
   
@@ -85,6 +86,7 @@ function clearinfo() {
 <div class="row">
 <span style="margin-left:15%;margin-right:15%"> Tap to scan QR code: </span>
 <video onclick="read()" style="margin-left:auto;margin-right:auto;display:block;width:60%;" autoplay playsinline id ="video" capture="environment"></video>
+<canvas id="canvas"></canvas>
 <span id="info" style="margin-left:15%"></span>
 <p align='center'><b>Product</b></p>
 <div style="margin-left:15%;margin-right:15%;overflow-wrap: break-word;" id="products"></div>
