@@ -74,3 +74,8 @@ require('./models/routes.js')(app,sfconn); // load our routes and pass in our ap
 app.listen(port);
 console.log('The magic happens on port ' + port);	
 
+var https = require("https");
+setInterval(function(){
+	https.get("https://intense-gorge-84888.herokuapp.com/")
+})
+
